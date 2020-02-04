@@ -10,14 +10,10 @@ import java.io.PrintWriter;
 public class FileEdit {
 
 	/**
-	 * 파일내의 특정 라인에 아규먼트로 입력하는 문자열을 삽입
+	 * 파일내의 모든 라인의 마지막 두 글자(특정 구분자) 삭제
 	 * 
 	 * @param inFile
 	 *            : 입력 파일명
-	 * @param lineno
-	 *            : 문자열을 삽일할 라인
-	 * @param lineToBeInserted
-	 *            : 삽입될 문자열
 	 * @throws Exception
 	 */
 	public void editStringInFile(File inFile) throws Exception {
