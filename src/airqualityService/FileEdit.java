@@ -36,7 +36,11 @@ public class FileEdit {
 			// 파일 내용을 한라인씩 읽어 마지막 두 글자인 구분자를 삭제
 			while ((resultCol = in.readLine()) != null) {
 
-				resultCol = resultCol.substring(0, resultCol.length() - 2);
+				//전체 데이터를 읽었음에도 불구하고 전부 응답코드가 00 외의 것들이어서 데이터가 나오지 않았을 경우의 에러 방지용
+				if(!(resultCol.equals(""))){
+					resultCol = resultCol.substring(0, resultCol.length() - 2);
+				}
+				
 
 				out.write(resultCol + "\r\n");
 				
