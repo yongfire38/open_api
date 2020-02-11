@@ -1,4 +1,4 @@
-package airqualityService;
+package common;
 
 import java.io.FileInputStream;
 import java.sql.Connection;

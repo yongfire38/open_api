@@ -16,6 +16,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import common.DBConnection;
+import common.JsonParser;
+
 public class AirqualityService_getIvstg {
 	
 	 final static Logger logger = Logger.getLogger(AirqualityService_getIvstg .class);
