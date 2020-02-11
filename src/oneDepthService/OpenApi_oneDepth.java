@@ -2,6 +2,7 @@ package oneDepthService;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -17,6 +18,11 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+
+import com.jcraft.jsch.Channel;
+import com.jcraft.jsch.ChannelSftp;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.Session;
 
 import common.DBConnection;
 import common.FileEdit;
@@ -215,6 +221,58 @@ public class OpenApi_oneDepth {
 		FileEdit ie = new FileEdit();
 		
 		ie.editStringInFile(file);
+		
+		//step 7. 대상 서버에 sftp로 보냄
+		
+				boolean result = true;
+				
+				Session session = null;
+				Channel channel = null;
+				ChannelSftp channelSftp = null;
+				
+				logger.debug("preparing the host information for sftp.");
+				
+				
+				try{
+					JSch jsch = new JSch();
+					session = jsch.getSession("agntuser", "172.29.129.11", 28);
+					session.setPassword("Dpdlwjsxm1@");
+					
+					//host 연결
+					java.util.Properties config = new java.util.Properties();
+					config.put("StrictHostKeyChecking", "no");
+					session.setConfig(config);
+					session.connect();
+					
+					//sftp 채널 연결
+					channel = session.openChannel("sftp");
+					channel.connect();
+					
+					//파일 업로드 처리
+					channelSftp = (ChannelSftp) channel;
+					
+					//channelSftp.cd("/data1/if_data/WEI"); //as-is, 연계서버에 떨어지는 위치
+					channelSftp.cd("/data1/test"); //test
+					File f = new File("oneDepth_result_" + strDate + ".dat");
+					String fileName = f.getName();
+					channelSftp.put(new FileInputStream(f), fileName);
+					
+				} catch(Exception e) {
+					e.printStackTrace();
+					result = false;
+				} finally {
+					//sftp 채널을 닫음
+					channelSftp.exit();
+					
+					//채널 연결 해제
+					channel.disconnect();
+					
+					//호스트 세션 종료
+					session.disconnect();
+					
+				}
+		
+		
 		
 		logger.info("complete!!");
 

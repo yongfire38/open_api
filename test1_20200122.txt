@@ -1,1 +1,0 @@
-mgtNo|^ivstgGb|^ivstgSpotNm|^adres|^coVal|^ivstgEndde|^pm10Val|^pbVal|^no2Val|^o3Val|^so2Val|^ivstgBgnde|^ivstgOdr|^envrnGrad|^umenoNo224hr|^umenoCo1hr|^umenoNo21hr|^umenoSo21hr|^umenoSo2Year|^umenoPm10Year|^umenoCo8hr|^umenoPm1024hr|^umenoSo224hr|^umenoNo2Year|^gmenoNo21hr|^gmenoPm10Year|^gmenoNo224hr|^gmenoNo2Year
