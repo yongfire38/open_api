@@ -182,21 +182,29 @@ public class AirqualityService_getIvstg {
 			// step 3.필요에 맞게 파싱
 
 			try {
+				
 				JSONParser parser = new JSONParser();
 				JSONObject obj = (JSONObject) parser.parse(json);
 				JSONObject response = (JSONObject) obj.get("response");
 
 				// response는 결과값 코드와 메시지를 가지는 header와 데이터 부분인 body로 구분
+				JSONObject header = (JSONObject) response.get("header");
 				JSONObject body = (JSONObject) response.get("body");
-
+				
+				String resultCode = header.get("resultCode").toString();
+				
 				JSONArray ivstgGbs = (JSONArray) body.get("ivstgGbs");
 
+				if (resultCode.equals("00")) {
+				
 				// 공통으로 갖는 사업 코드
 				for (int i = 0; i < ivstgGbs.size(); i++) {
+					
+					
 					JSONObject ivstgGb_Json = (JSONObject) ivstgGbs.get(i);
 
 					String ivstgGb_str = ivstgGb_Json.get("ivstgGb").toString(); //조사구분
-
+					System.out.println(ivstgGb_str);
 					JSONArray ivstgs = (JSONArray) ivstgGb_Json.get("ivstgs");
 
 					for (int r = 0; r < ivstgs.size(); r++) {
@@ -589,6 +597,7 @@ public class AirqualityService_getIvstg {
 					// 0.2초간 중지시킨다. (그냥 진행하면 응답 서버 에러 가능성)
 					Thread.sleep(200);
 				}
+			}
 
 			} catch (Exception e) {
 				e.printStackTrace();
