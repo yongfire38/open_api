@@ -204,7 +204,7 @@ public class AirqualityService_getIvstg {
 					JSONObject ivstgGb_Json = (JSONObject) ivstgGbs.get(i);
 
 					String ivstgGb_str = ivstgGb_Json.get("ivstgGb").toString(); //조사구분
-					System.out.println(ivstgGb_str);
+					
 					JSONArray ivstgs = (JSONArray) ivstgGb_Json.get("ivstgs");
 
 					for (int r = 0; r < ivstgs.size(); r++) {
@@ -594,8 +594,8 @@ public class AirqualityService_getIvstg {
 
 					//System.out.println("next");
 					logger.info("mgtNo :" + mgtNo);
-					// 0.2초간 중지시킨다. (그냥 진행하면 응답 서버 에러 가능성)
-					Thread.sleep(200);
+					// 1초간 중지시킨다. (그냥 진행하면 응답 서버 에러 가능성)
+					Thread.sleep(1000);
 				}
 			}
 
@@ -609,8 +609,6 @@ public class AirqualityService_getIvstg {
 		}
 		
 		//step 5. 대상 서버에 sftp로 보냄
-		
-		boolean result = true;
 		
 		Session session = null;
 		Channel channel = null;
@@ -645,7 +643,6 @@ public class AirqualityService_getIvstg {
 			
 		} catch(Exception e) {
 			e.printStackTrace();
-			result = false;
 		} finally {
 			//sftp 채널을 닫음
 			channelSftp.exit();
