@@ -224,7 +224,6 @@ public class OpenApi_oneDepth {
 		
 		//step 7. 대상 서버에 sftp로 보냄
 		
-				boolean result = true;
 				
 				Session session = null;
 				Channel channel = null;
@@ -259,7 +258,6 @@ public class OpenApi_oneDepth {
 					
 				} catch(Exception e) {
 					e.printStackTrace();
-					result = false;
 				} finally {
 					//sftp 채널을 닫음
 					channelSftp.exit();

@@ -307,7 +307,7 @@ public class AirqualityService_getStackStdr {
 					
 					//channelSftp.cd("/data1/if_data/WEI"); //as-is, 연계서버에 떨어지는 위치
 					channelSftp.cd("/data1/test"); //test
-					File f = new File("AirqualityService_getIvstg_" + strDate + ".dat");
+					File f = new File("AirqualityService_getStackStdr_" + strDate + ".dat");
 					String fileName = f.getName();
 					channelSftp.put(new FileInputStream(f), fileName);
 					
