@@ -35,7 +35,7 @@ public class AirqualityService_getStackStdr {
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) throws Exception {
 		
-		//System.out.println("오픈api 시작");
+		logger.info("firstLine start..");
 				String mgtNo = "";
 
 				// step 0.open api url과 서비스 키.
@@ -124,6 +124,8 @@ public class AirqualityService_getStackStdr {
 						JSONObject body = (JSONObject) response.get("body");
 						
 						String resultCode = header.get("resultCode").toString();
+						
+						//logger.info("mgtNo:::"+mgtNo+ " resultCode:::"+ resultCode);
 						
 						if (resultCode.equals("00")) {
 							

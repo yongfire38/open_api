@@ -194,7 +194,7 @@ public class GreenhouseGasService_getInfo {
 			Thread.sleep(1000);
 
 		}
-
+		
 		// step 5. 대상 서버에 sftp로 보냄
 
 		Session session = null;

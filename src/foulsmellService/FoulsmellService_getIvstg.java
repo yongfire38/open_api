@@ -412,7 +412,7 @@ public class FoulsmellService_getIvstg {
 			// 1초간 중지시킨다. (그냥 진행하면 응답 서버 에러 가능성)
 			Thread.sleep(1000);
 		}
-
+		
 		// step 5. 대상 서버에 sftp로 보냄
 
 		Session session = null;

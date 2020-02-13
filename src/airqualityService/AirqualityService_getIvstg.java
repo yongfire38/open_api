@@ -33,7 +33,7 @@ public class AirqualityService_getIvstg {
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) throws Exception {
 
-		// System.out.println("오픈api 시작");
+		logger.info("firstLine start..");
 		String mgtNo = "";
 
 		// step 0.open api url과 서비스 키.
@@ -160,7 +160,7 @@ public class AirqualityService_getIvstg {
 			pw.write("|^");
 			pw.write("umenoCo8hr"); // 운영시 CO_8시간평균
 			pw.write("|^");
-			pw.write("envrnGrad"); // 환경기준등급
+			pw.write("envrnGrad"); // 환경기준등급		
 			pw.println();
 			pw.flush();
 			pw.close();
@@ -192,10 +192,10 @@ public class AirqualityService_getIvstg {
 				JSONObject body = (JSONObject) response.get("body");
 
 				String resultCode = header.get("resultCode").toString();
-				
-				JSONArray ivstgGbs = (JSONArray) body.get("ivstgGbs");
 
 				if (resultCode.equals("00")) {
+					
+					JSONArray ivstgGbs = (JSONArray) body.get("ivstgGbs");
 
 					// 공통으로 갖는 사업 코드
 					for (int i = 0; i < ivstgGbs.size(); i++) {
@@ -611,7 +611,7 @@ public class AirqualityService_getIvstg {
 			// 1초간 중지시킨다. (그냥 진행하면 응답 서버 에러 가능성)
 			Thread.sleep(1000);
 		}
-
+		
 		// step 5. 대상 서버에 sftp로 보냄
 
 		Session session = null;
